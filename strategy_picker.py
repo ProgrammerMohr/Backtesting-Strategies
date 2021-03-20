@@ -1,5 +1,6 @@
 from strategies.ExponentialMovingAverageCrossover import EmaSimulator
 from strategies.SimpleMovingAverageCrossOver import SmaSimulator
+from strategies.StochasticOscillatorCrossOver import StochSimulator
 from data import av_data
 from pathlib import Path
 
@@ -10,9 +11,8 @@ p = p.joinpath(symbol)
 p.mkdir(exist_ok=True)
 
 data = av_data.get_daily_time_series(symbol, full=True)
-print(data)
 cash = 1000
-strats = [SmaSimulator(data, cash, p.name), EmaSimulator(data, cash, p.name)]
+strats = [SmaSimulator(data, cash, p.name), EmaSimulator(data, cash, p.name), StochSimulator(data, cash, p.name)]
 results = []
 
 for strat in strats:
